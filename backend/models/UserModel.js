@@ -1,8 +1,14 @@
-import mongoose from 'mongoose';
+let mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
-    username: String,
-    password: String
+    username: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    }
 });
 
-export default mongoose.model('tbl_users', userSchema);
+module.exports = mongoose.model('tbl_users', userSchema);
