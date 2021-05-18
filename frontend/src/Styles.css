@@ -1,0 +1,17 @@
+
+.hero{
+    height: 416px;
+    background-image: url(https://www.austin.org.au/Assets/Images/Surgery-mobile.jpg);
+    margin-bottom: 10px;
+}
+
+.footer{
+    margin-top: 10px;
+    height: auto;
+    background-color: rgb(35, 112, 255);
+}
+
+.copyright{
+    align-content: center;
+    justify-content: center;
+}
