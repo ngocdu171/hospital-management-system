@@ -1,12 +1,13 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import myURL from "../myURL.js";
 
 function Register() {
   const [fullname, setFullname] = useState();
   const [address, setAddress] = useState();
   const [phone, setPhone] = useState();
   const [city, setCity] = useState();
-  const [pincode, setPincode] = useState();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [repassword, setRepassword] = useState();
@@ -15,8 +16,27 @@ function Register() {
   const [dob, setDob] = useState();
 
   function register(event) {
-    console.log("dob: ", dob);
+    // console.log("dob: ", dob);
     event.preventDefault();
+    if (password !== repassword) {
+      alert("they do not matched!");
+    } else {
+      axios.get("http://localhost:3000/user").then((res) => {
+        var userCheck = res.data.find((e) => e.username === username);
+        if (userCheck) {
+          alert("Username existed!");
+        } else {
+          axios.post("http://localhost:3000/user", {username,password,fullname,address,phone,city,blood,gender,dob}).then((res) => {
+            if(res) {
+              alert("create successful!");
+            }
+            else {
+              alert("create fail!");
+            }
+          })
+        }
+      });
+    }
   }
   return (
     <div className="container">
@@ -32,7 +52,7 @@ function Register() {
               required="required"
               placeholder="Input field"
               value={fullname}
-              onChange={(event)=>setFullname(event.target.value)}
+              onChange={(event) => setFullname(event.target.value)}
             />
           </div>
           <div>
@@ -54,7 +74,7 @@ function Register() {
               required="required"
               placeholder="Input field"
               value={phone}
-              onChange={(event)=>setPhone(event.target.value)}
+              onChange={(event) => setPhone(event.target.value)}
             />
           </div>
           <div>
@@ -65,18 +85,7 @@ function Register() {
               required="required"
               placeholder="Input field"
               value={city}
-              onChange={(event)=>setCity(event.target.value)}
-            />
-          </div>
-          <div>
-            <label for="">PIN Code</label>
-            <input
-              type="text"
-              class="form-control"
-              required="required"
-              placeholder="Input field"
-              value={pincode}
-              onChange={(event)=>setPincode(event.target.value)}
+              onChange={(event) => setCity(event.target.value)}
             />
           </div>
           <div>
@@ -87,7 +96,7 @@ function Register() {
               required="required"
               placeholder="Input field"
               value={username}
-              onChange={(event)=>setUsername(event.target.value)}
+              onChange={(event) => setUsername(event.target.value)}
             />
           </div>
           <div>
@@ -98,7 +107,7 @@ function Register() {
               required="required"
               placeholder="Enter your Password"
               value={password}
-              onChange={(event)=>setPassword(event.target.value)}
+              onChange={(event) => setPassword(event.target.value)}
             />
           </div>
           <div>
@@ -109,13 +118,15 @@ function Register() {
               required="required"
               placeholder="Enter your Password"
               value={repassword}
-              onChange={(event)=>setRepassword(event.target.value)}
+              onChange={(event) => setRepassword(event.target.value)}
             />
           </div>
           <div>
             <label for="">Blood Group</label>
-            <select value={blood}
-            onChange={(event)=>setBlood(event.target.value)}>
+            <select
+              value={blood}
+              onChange={(event) => setBlood(event.target.value)}
+            >
               <option value="A+">A+</option>
               <option value="A-">A-</option>
               <option value="B+">B+</option>
@@ -128,16 +139,21 @@ function Register() {
           </div>
           <div>
             <label for="">Gender</label>
-            <select value={gender}
-            onChange={(event)=>setGender(event.target.value)}>
+            <select
+              value={gender}
+              onChange={(event) => setGender(event.target.value)}
+            >
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </select>
           </div>
           <div>
             <label for="">Date Of Birth</label>
-            <input type="date" value={dob}
-            onChange={(event)=>setDob(event.target.value)} />
+            <input
+              type="date"
+              value={dob}
+              onChange={(event) => setDob(event.target.value)}
+            />
           </div>
         </div>
 

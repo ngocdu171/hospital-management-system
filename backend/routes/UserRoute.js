@@ -1,6 +1,7 @@
 import express from "express";
 import bcrypt from "bcryptjs";
 import userModel from "../models/UserModel.js";
+import patientModel from "../models/PatientModel.js";
 
 const router = express.Router();
 
@@ -25,8 +26,19 @@ router.post("/", async (req, res) => {
         username: req.body.username,
         password: passwordHash
     });
+    const newPatient = new patientModel({
+      fullname: req.body.fullname,
+      address: req.body.address,
+      phone: req.body.phone,
+      city: req.body.city,
+      username: req.body.username,
+      blood: req.body.blood,
+      gender: req.body.gender,
+      dob: req.body.dob
+    });
     try {
       await newUser.save();
+      await newPatient.save();
       res.status(201).json({message: "create successful!"});
     } catch (error) {
       res.status(409).json({ message: error });
