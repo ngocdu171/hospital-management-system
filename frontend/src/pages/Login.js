@@ -6,23 +6,23 @@ import myURL from '../myURL';
 function Login() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+
     function Signin(event) {
         event.preventDefault();
-        if(username && password) {
-          axios.get('http://localhost:3000/user/login',{username,password})
+          axios.post(myURL+'/user/login',{username,password})
           .then(res => {
-            if(res.data) {
-              console.log(res.data);
+            if(res.data.user) {
+              console.log(res.data.user);
             }
-            else{
-              console.log("wrong password!!!!!");
+            else {
+              console.log(res.data.message);
             }
           })
-        }
-        else {
-          alert("enter your username & password!");
-        }
+          .catch(error => {
+            console.log(error);
+          })
     }
+
   return (
     <div>
       <form onSubmit={Signin}>
@@ -34,7 +34,7 @@ function Login() {
             <input
               type="text"
               class="form-control"
-              // required="required"
+              required="required"
               placeholder="Enter your Username"
               value={username}
               onChange={(event)=>setUsername(event.target.value)}
@@ -45,7 +45,7 @@ function Login() {
             <input
               type="password"
               class="form-control"
-              // required="required"
+              required="required"
               placeholder="Enter your Password"
               value={password}
               onChange={(event)=>setPassword(event.target.value)}

@@ -46,15 +46,17 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   if (username && password) {
       const user = await userModel.find({username: username});
       if(user.length > 0) {
+          // const passwordCorrect = await bcrypt.compare(password, user[0].password);
           const passwordCorrect = await bcrypt.compare(password, user[0].password);
           if(passwordCorrect) {
-              res.status(200).json({message: "login successful!"});
+              // res.status(200).json({message: "login successful!"});
+              res.status(200).json({user});
           }
           else {
               res.json({message: "password is not correct"});
