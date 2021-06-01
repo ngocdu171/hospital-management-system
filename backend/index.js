@@ -4,6 +4,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 
 import UserRoute from './routes/UserRoute.js';
+import PatientRoute from './routes/PatientRoute.js';
 
 const app = express();
 
@@ -17,6 +18,7 @@ const CONNECTION_URL = "mongodb+srv://BrotherD:conmemay7@cluster0.jabiy.mongodb.
 const PORT = process.env.PORT || 3000;
 
 app.use('/user', UserRoute);
+app.use('/patient', PatientRoute);
 
 app.get('/', (req, res) => {
   res.send('Welcome to Hospital System Management!');

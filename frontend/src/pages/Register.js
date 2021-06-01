@@ -73,7 +73,8 @@ function Register() {
           <div>
             <label for="">Phone Number</label>
             <input
-              type="text"
+              type="tel"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
               class="form-control"
               required="required"
               placeholder="Input field"
@@ -156,6 +157,7 @@ function Register() {
             <input
               type="date"
               value={dob}
+              required="required"
               onChange={(event) => setDob(event.target.value)}
             />
           </div>

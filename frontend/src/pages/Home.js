@@ -20,7 +20,20 @@ function Home() {
             <div className="container  !direction !spacing">
                 <div className="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
                     <div className="col-6 ">
-                        b5-col 1
+                        b5-col 2
+                    </div>
+                    <div className="col-6 ">
+                        <img src="https://caodangyduocpasteurtphcm.edu.vn/wp-content/uploads/2016/12/dieu-duong-1.jpg" />
+                    </div>
+                </div>
+            </div>
+            </section>
+
+            <section>
+            <div className="container  !direction !spacing">
+                <div className="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                    <div className="col-6 ">
+                        b5-col 3
                     </div>
                     <div className="col-6 ">
                         <img src="https://caodangyduocpasteurtphcm.edu.vn/wp-content/uploads/2016/12/dieu-duong-1.jpg" />

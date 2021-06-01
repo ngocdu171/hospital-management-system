@@ -5,6 +5,10 @@
     margin-bottom: 10px;
 }
 
+p{
+    color: black;
+}
+
 .footer{
     margin-top: 10px;
     height: auto;
