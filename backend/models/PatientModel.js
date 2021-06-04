@@ -10,7 +10,7 @@ const patientSchema = mongoose.Schema({
         required: true
     },
     phone: {
-        type: Number,
+        type: String,
         require: true
     },
     city: {

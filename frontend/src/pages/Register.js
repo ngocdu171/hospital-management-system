@@ -74,7 +74,6 @@ function Register() {
             <label for="">Phone Number</label>
             <input
               type="tel"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
               class="form-control"
               required="required"
               placeholder="Input field"
@@ -132,6 +131,7 @@ function Register() {
               value={blood}
               onChange={(event) => setBlood(event.target.value)}
             >
+              <option>Select your blood</option>
               <option value="A+">A+</option>
               <option value="A-">A-</option>
               <option value="B+">B+</option>
@@ -148,6 +148,7 @@ function Register() {
               value={gender}
               onChange={(event) => setGender(event.target.value)}
             >
+              <option >Select your gender</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </select>

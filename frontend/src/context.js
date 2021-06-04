@@ -19,7 +19,7 @@ const HSMProvider = (props) => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [islogin]);
 
   function loginSuccess(tam) {
     // alert("login success!");
@@ -34,6 +34,10 @@ const HSMProvider = (props) => {
       setUserinfo(null);
     // console.log("hitted logout!");
   }
+  
+  function updateInfo() {
+    console.log("function updateInfo from context.js");
+  }
   console.log(userinfo);
 
   return (
@@ -45,6 +49,7 @@ const HSMProvider = (props) => {
         setUserinfo: setUserinfo,
         loginSuccess: loginSuccess,
         logout: logout,
+        updateInfo: updateInfo
       }}
     >
       {props.children}

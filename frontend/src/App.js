@@ -11,7 +11,6 @@ import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import EditProfile from "./components/EditProfile";
 import Appointment from "./components/Appointment";
-import Tester from "./components/Tester";
 
 function App() {
   return (

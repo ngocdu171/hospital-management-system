@@ -5,7 +5,7 @@ import { HSMContext } from "../context";
 import myURL from "../myURL";
 
 function Login() {
-  const {user, setUserinfo, loginSuccess} = useContext(HSMContext);
+  const { loginSuccess } = useContext(HSMContext);
   // console.log(user);
   let history = useHistory();
 
@@ -24,7 +24,8 @@ function Login() {
           loginSuccess(tam);
           // setUserinfo(res.data.user[0].username);
         } else {
-          console.log(res.data.message);
+          alert(res.data.message);
+          // console.log(res.data.message);
         }
       })
       .catch((error) => {

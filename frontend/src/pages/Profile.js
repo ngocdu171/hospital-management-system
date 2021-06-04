@@ -1,24 +1,33 @@
 import React, { useContext, useState } from "react";
 import { HSMContext } from "../context";
+import moment from 'moment';
 
 function Profile() {
-  const { patients, userinfo } = useContext(HSMContext);
+  const { patients, userinfo, updateInfo } = useContext(HSMContext);
   // console.log(patients);
 
   const tam = patients.find(
     (patient) => patient.username === userinfo[0].username
   );
   console.log(tam);
-  console.log(tam.username);
+  // console.log(tam.username);
   const [fullname, setFullname] = useState();
+  const [address, setAddress] = useState();
+  const [phone, setPhone] = useState();
+  const [city, setCity] = useState();
+  const [username, setUsername] = useState();
+  const [blood, setBlood] = useState();
+  const [gender, setGender] = useState();
+  const [dob, setDob] = useState();
   const [showedit, setShowedit] = useState(false);
-  const [test, setTest] = useState(false)
 
-  // function handleChange() {
-  //   console.log("test");
-  // }
-
-  console.log(test);
+  function editInfo(event) {
+    event.preventDefault();
+    console.log(fullname);
+    // updateInfo();
+    // setShowedit(!showedit);
+    // alert("editted");
+  }
 
   return (
     <div class="container !direction !spacing">
@@ -33,7 +42,7 @@ function Profile() {
             </div>
           </div>
           <div className="container">
-            <form>
+            <form onSubmit={editInfo}>
               <legend>Edit information</legend>
 
               <div class="form-group">
@@ -62,7 +71,6 @@ function Profile() {
                   <label for="">Phone Number</label>
                   <input
                     type="tel"
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                     class="form-control"
                     required="required"
                     placeholder="Input field"
@@ -111,11 +119,14 @@ function Profile() {
                 </div>
                 <div>
                   <label for="">Date Of Birth</label>
-                  <input type="date" required="required" value={tam.dob} />
+                  <input type="date" required="required" value={tam.dob.split("T")[0]} />
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-primary" onClick={()=>setShowedit(!showedit)}>
+              <button
+                type="submit"
+                class="btn btn-primary"
+              >
                 Submit
               </button>
             </form>
@@ -124,7 +135,55 @@ function Profile() {
       ) : (
         <div>
           <div>information patient</div>
-          <button type="submit" className="btn btn-primary" onClick={()=>setShowedit(!showedit)}>edit</button>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Username</th>
+                <td>{tam.username}</td>
+              </tr>
+              <tr>
+                <th scope="row">Fullname</th>
+                <td>{tam.fullname}</td>
+              </tr>
+              <tr>
+                <th scope="row">Address</th>
+                <td colspan="2">{tam.address}</td>
+              </tr>
+              <tr>
+                <th scope="row">City</th>
+                <td colspan="2">{tam.city}</td>
+              </tr>
+              <tr>
+                <th scope="row">Gender</th>
+                <td colspan="2">{tam.gender}</td>
+              </tr>
+              <tr>
+                <th scope="row">Phone Number</th>
+                <td colspan="2">{tam.phone}</td>
+              </tr>
+              <tr>
+                <th scope="row">Date of Birth</th>
+                <td colspan="2">{moment(tam.dob.split("T")[0]).format("DD/MM/YYYY")}</td>
+              </tr>
+              <tr>
+                <th scope="row">Blood</th>
+                <td colspan="2">{tam.blood}</td>
+              </tr>
+            </tbody>
+          </table>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={() => setShowedit(!showedit)}
+          >
+            edit
+          </button>
         </div>
       )}
     </div>

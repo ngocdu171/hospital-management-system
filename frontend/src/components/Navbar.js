@@ -30,7 +30,7 @@ function Navbar() {
                   <Link
                     className="nav-link active"
                     aria-current="page"
-                    to="/Profile"
+                    to="/profile"
                   >
                     View Profile
                   </Link>
