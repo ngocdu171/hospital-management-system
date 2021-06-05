@@ -35,8 +35,10 @@ const HSMProvider = (props) => {
     // console.log("hitted logout!");
   }
   
-  function updateInfo() {
-    console.log("function updateInfo from context.js");
+  function updateInfo(newInfo) {
+    // console.log("function updateInfo from context.js");
+    // const tam = newInfo;
+    console.log("newInfo dc in tu context: ", newInfo);
   }
   console.log(userinfo);
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { HSMContext } from "../context";
 import moment from 'moment';
 
@@ -9,25 +9,37 @@ function Profile() {
   const tam = patients.find(
     (patient) => patient.username === userinfo[0].username
   );
-  console.log(tam);
+  // console.log(tam);
   // console.log(tam.username);
-  const [fullname, setFullname] = useState();
-  const [address, setAddress] = useState();
-  const [phone, setPhone] = useState();
-  const [city, setCity] = useState();
-  const [username, setUsername] = useState();
-  const [blood, setBlood] = useState();
-  const [gender, setGender] = useState();
-  const [dob, setDob] = useState();
+  const [fullname, setFullname] = useState(tam.fullname);
+  const [address, setAddress] = useState(tam.address);
+  const [phone, setPhone] = useState(tam.phone);
+  const [city, setCity] = useState(tam.city);
+  const [username, setUsername] = useState(tam.username);
+  const [blood, setBlood] = useState(tam.blood);
+  const [gender, setGender] = useState(tam.gender);
+  const [dob, setDob] = useState(tam.dob);
   const [showedit, setShowedit] = useState(false);
+  // const [newInfo, setNewInfo] = useState(null);
 
-  function editInfo(event) {
+  function EditInfo(event) {
+    //   setNewInfo(
+    //     {fullname,address,phone,city,username,blood,gender,dob}
+    //   );
+    // console.log("thong tin moi:", newInfo);
+    // console.log(fullname);
+    const newInfo = {fullname,address,phone,city,username,blood,gender,dob};
+    console.log(newInfo);
+    updateInfo(newInfo);
     event.preventDefault();
-    console.log(fullname);
-    // updateInfo();
+    // updateInfo(newInfo);
     // setShowedit(!showedit);
     // alert("editted");
   }
+
+  // function handleInputChange() {
+  //   //
+  // }
 
   return (
     <div class="container !direction !spacing">
@@ -42,7 +54,7 @@ function Profile() {
             </div>
           </div>
           <div className="container">
-            <form onSubmit={editInfo}>
+            <form onSubmit={EditInfo}>
               <legend>Edit information</legend>
 
               <div class="form-group">
@@ -53,7 +65,8 @@ function Profile() {
                     class="form-control"
                     required="required"
                     placeholder="Input field"
-                    value={tam.fullname}
+                    name="fullname"
+                    value={fullname}
                     onChange={(event) => setFullname(event.target.value)}
                   />
                 </div>
@@ -64,7 +77,9 @@ function Profile() {
                     class="form-control"
                     required="required"
                     placeholder="Input field"
-                    value={tam.address}
+                    name="address"
+                    value={address}
+                    onChange={(event) => setAddress(event.target.value)}
                   />
                 </div>
                 <div>
@@ -74,7 +89,9 @@ function Profile() {
                     class="form-control"
                     required="required"
                     placeholder="Input field"
-                    value={tam.phone}
+                    name="phone"
+                    value={phone}
+                    onChange={(event)=>setPhone(event.target.value)}
                   />
                 </div>
                 <div>
@@ -84,7 +101,9 @@ function Profile() {
                     class="form-control"
                     required="required"
                     placeholder="Input field"
-                    value={tam.city}
+                    name="city"
+                    value={city}
+                    onChange={(event)=>setCity(event.target.value)}
                   />
                 </div>
                 <div>
@@ -94,12 +113,14 @@ function Profile() {
                     class="form-control"
                     required="required"
                     placeholder="Input field"
-                    value={tam.username}
+                    name="username"
+                    value={username}
+                    onChange={(event)=>setUsername(event.target.value)}
                   />
                 </div>
                 <div>
                   <label for="">Blood Group</label>
-                  <select value={tam.blood}>
+                  <select name="blood" value={blood} onChange={(event)=>setBlood(event.target.value)}>
                     <option value="A+">A+</option>
                     <option value="A-">A-</option>
                     <option value="B+">B+</option>
@@ -112,14 +133,14 @@ function Profile() {
                 </div>
                 <div>
                   <label for="">Gender</label>
-                  <select value={tam.gender}>
+                  <select name="gender" value={gender} onChange={(event)=>setGender(event.target.value)}>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                   </select>
                 </div>
                 <div>
                   <label for="">Date Of Birth</label>
-                  <input type="date" required="required" value={tam.dob.split("T")[0]} />
+                  <input type="date" required="required" name="dob" value={dob.split("T")[0]} onChange={(event)=>setDob(event.target.value)}/>
                 </div>
               </div>
 
@@ -128,6 +149,12 @@ function Profile() {
                 class="btn btn-primary"
               >
                 Submit
+              </button>
+              <button
+                class="btn btn-danger"
+                onClick={()=>setShowedit(!showedit)}
+              >
+                Cancel
               </button>
             </form>
           </div>
