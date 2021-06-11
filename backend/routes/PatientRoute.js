@@ -21,9 +21,8 @@ router.put("/:_id", async (req, res) => {
     address: req.body.address,
     phone: req.body.phone,
     city: req.body.city,
-    username: req.body.username,
     blood: req.body.blood,
-    gender: req.body.blood,
+    gender: req.body.gender,
     dob: req.body.dob
   }
   await patientModel.findByIdAndUpdate(_id, newInfo)

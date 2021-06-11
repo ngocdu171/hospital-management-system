@@ -10,6 +10,19 @@ const HSMProvider = (props) => {
   const [islogin, setIslogin] = useState();
 
   useEffect(() => {
+    getAllPatient();
+    // axios
+    //   .get(myURL + `/patient`)
+    //   .then((response) => {
+    //     console.log(response);
+    //     setPatients(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  }, [islogin]);
+
+  function getAllPatient() {
     axios
       .get(myURL + `/patient`)
       .then((response) => {
@@ -19,7 +32,7 @@ const HSMProvider = (props) => {
       .catch((error) => {
         console.log(error);
       });
-  }, [islogin]);
+  }
 
   function loginSuccess(tam) {
     // alert("login success!");
@@ -35,10 +48,15 @@ const HSMProvider = (props) => {
     // console.log("hitted logout!");
   }
   
-  function updateInfo(newInfo) {
+  function updateInfo(_id,newInfo) {
     // console.log("function updateInfo from context.js");
     // const tam = newInfo;
+    axios.put(myURL+`/patient/`+_id, newInfo)
+    .then(response =>{
+      getAllPatient();
+    });
     console.log("newInfo dc in tu context: ", newInfo);
+    // console.log("idUser: ", userinfo[0]._id);
   }
   console.log(userinfo);
 

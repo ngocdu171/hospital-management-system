@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { HSMContext } from "../context";
-import moment from 'moment';
+import moment from "moment";
 
 function Profile() {
   const { patients, userinfo, updateInfo } = useContext(HSMContext);
@@ -15,7 +15,7 @@ function Profile() {
   const [address, setAddress] = useState(tam.address);
   const [phone, setPhone] = useState(tam.phone);
   const [city, setCity] = useState(tam.city);
-  const [username, setUsername] = useState(tam.username);
+  // const [username, setUsername] = useState(tam.username);
   const [blood, setBlood] = useState(tam.blood);
   const [gender, setGender] = useState(tam.gender);
   const [dob, setDob] = useState(tam.dob);
@@ -28,9 +28,21 @@ function Profile() {
     //   );
     // console.log("thong tin moi:", newInfo);
     // console.log(fullname);
-    const newInfo = {fullname,address,phone,city,username,blood,gender,dob};
-    console.log(newInfo);
-    updateInfo(newInfo);
+    if (
+      fullname !== tam.fullname ||
+      address !== tam.address ||
+      phone !== tam.phone ||
+      city !== tam.city ||
+      blood !== tam.blood ||
+      gender !== tam.gender ||
+      dob !== tam.dob
+    ) {
+      const _id = tam._id
+      const newInfo = { fullname, address, phone, city, blood, gender, dob };
+      // console.log(newInfo);
+      updateInfo(_id,newInfo);
+    }
+    alert("Change Profile Successful!");
     event.preventDefault();
     // updateInfo(newInfo);
     // setShowedit(!showedit);
@@ -91,7 +103,7 @@ function Profile() {
                     placeholder="Input field"
                     name="phone"
                     value={phone}
-                    onChange={(event)=>setPhone(event.target.value)}
+                    onChange={(event) => setPhone(event.target.value)}
                   />
                 </div>
                 <div>
@@ -103,24 +115,16 @@ function Profile() {
                     placeholder="Input field"
                     name="city"
                     value={city}
-                    onChange={(event)=>setCity(event.target.value)}
-                  />
-                </div>
-                <div>
-                  <label for="">Username</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    required="required"
-                    placeholder="Input field"
-                    name="username"
-                    value={username}
-                    onChange={(event)=>setUsername(event.target.value)}
+                    onChange={(event) => setCity(event.target.value)}
                   />
                 </div>
                 <div>
                   <label for="">Blood Group</label>
-                  <select name="blood" value={blood} onChange={(event)=>setBlood(event.target.value)}>
+                  <select
+                    name="blood"
+                    value={blood}
+                    onChange={(event) => setBlood(event.target.value)}
+                  >
                     <option value="A+">A+</option>
                     <option value="A-">A-</option>
                     <option value="B+">B+</option>
@@ -133,26 +137,33 @@ function Profile() {
                 </div>
                 <div>
                   <label for="">Gender</label>
-                  <select name="gender" value={gender} onChange={(event)=>setGender(event.target.value)}>
+                  <select
+                    name="gender"
+                    value={gender}
+                    onChange={(event) => setGender(event.target.value)}
+                  >
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                   </select>
                 </div>
                 <div>
                   <label for="">Date Of Birth</label>
-                  <input type="date" required="required" name="dob" value={dob.split("T")[0]} onChange={(event)=>setDob(event.target.value)}/>
+                  <input
+                    type="date"
+                    required="required"
+                    name="dob"
+                    value={dob.split("T")[0]}
+                    onChange={(event) => setDob(event.target.value)}
+                  />
                 </div>
               </div>
 
-              <button
-                type="submit"
-                class="btn btn-primary"
-              >
+              <button type="submit" class="btn btn-primary">
                 Submit
               </button>
               <button
                 class="btn btn-danger"
-                onClick={()=>setShowedit(!showedit)}
+                onClick={() => setShowedit(!showedit)}
               >
                 Cancel
               </button>
@@ -196,7 +207,9 @@ function Profile() {
               </tr>
               <tr>
                 <th scope="row">Date of Birth</th>
-                <td colspan="2">{moment(tam.dob.split("T")[0]).format("DD/MM/YYYY")}</td>
+                <td colspan="2">
+                  {moment(tam.dob.split("T")[0]).format("DD/MM/YYYY")}
+                </td>
               </tr>
               <tr>
                 <th scope="row">Blood</th>
