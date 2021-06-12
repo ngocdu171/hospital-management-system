@@ -2,17 +2,23 @@ import React, { useContext, useState } from 'react'
 import { HSMContext } from '../context'
 
 function Book() {
-    const {patients, userinfo} = useContext(HSMContext);
-    console.log(patients);
+    const {patients, userinfo, islogin} = useContext(HSMContext);
+    // console.log(patients);
+    const tam = patients.find(patient => patient.username === userinfo[0].username);
 
     const [date, setDate] = useState();
     const [time, setTime] = useState();
     const [department, setDepartment] = useState();
     const [doctor, setDoctor] = useState();
 
+    function BookAppointment(event) {
+      alert("BookAppointment!!!!");
+      event.preventDefault();
+    }
+
     return (
         <div className="container">
-            <form >
+            <form onSubmit={BookAppointment}>
               <legend>Edit information</legend>
 
               <div className="form-group">
@@ -126,6 +132,8 @@ function Book() {
                   <label for="">Doctor</label>
                   <select
                     name="blood"
+                    value={doctor}
+                    onChange={(event)=>setDoctor(event.target.value)}
                   >
                   <option >Select Doctor</option>
                     <option value="Doctor 01">Doctor 01</option>
@@ -140,12 +148,12 @@ function Book() {
                 </div>
               </div>
 
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary" disabled={islogin===false}>
                 Submit
               </button>
               <button
                 className="btn btn-danger"
-                onClick={() => alert("!showedit")}
+                onClick={() => alert("Cancel!")}
               >
                 Cancel
               </button>

@@ -7,7 +7,7 @@ const HSMContext = createContext();
 const HSMProvider = (props) => {
   const [patients, setPatients] = useState();
   const [userinfo, setUserinfo] = useState(null);
-  const [islogin, setIslogin] = useState();
+  const [islogin, setIslogin] = useState(false);
 
   useEffect(() => {
     getAllPatient();
