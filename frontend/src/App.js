@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import EditProfile from "./components/EditProfile";
 import Appointment from "./components/Appointment";
+import Book from "./pages/Book";
 
 function App() {
   return (
@@ -34,8 +35,8 @@ function App() {
           <Route exact path="/editprofile">
             <EditProfile />
           </Route>
-          <Route path="/appointment">
-            <Appointment />
+          <Route path="/book">
+            <Book />
           </Route>
         </Switch>
         <Footer />

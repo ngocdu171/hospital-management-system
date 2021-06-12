@@ -3,7 +3,7 @@ import React from "react";
 function Footer() {
   return (
     <div className="footer">
-      <div className="container-fluid">
+      <div className="container-fluid text-center">
         <div className="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
           <div className="col-6 ">b5-col 1</div>
           <div className="col-6 ">
@@ -14,9 +14,7 @@ function Footer() {
         <div className="copyright">
         <div className="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
           <div className="col-sm ">
-            <h5>
-              <i className="fa fa-copyright">C</i> 2021 Copyright Hospital System
-              Management
+            <h5>2021 Copyright DuPham
             </h5>
           </div>
         </div>

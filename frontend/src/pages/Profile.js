@@ -54,8 +54,8 @@ function Profile() {
   // }
 
   return (
-    <div class="container !direction !spacing">
-      <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+    <div className="container !direction !spacing">
+      <div className="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
         This is Profile page
       </div>
       {showedit ? (
@@ -69,12 +69,12 @@ function Profile() {
             <form onSubmit={EditInfo}>
               <legend>Edit information</legend>
 
-              <div class="form-group">
+              <div className="form-group">
                 <div>
                   <label for="">Fullname</label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     required="required"
                     placeholder="Input field"
                     name="fullname"
@@ -86,7 +86,7 @@ function Profile() {
                   <label for="">Address</label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     required="required"
                     placeholder="Input field"
                     name="address"
@@ -98,7 +98,7 @@ function Profile() {
                   <label for="">Phone Number</label>
                   <input
                     type="tel"
-                    class="form-control"
+                    className="form-control"
                     required="required"
                     placeholder="Input field"
                     name="phone"
@@ -110,7 +110,7 @@ function Profile() {
                   <label for="">City</label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     required="required"
                     placeholder="Input field"
                     name="city"
@@ -158,11 +158,11 @@ function Profile() {
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" className="btn btn-primary">
                 Submit
               </button>
               <button
-                class="btn btn-danger"
+                className="btn btn-danger"
                 onClick={() => setShowedit(!showedit)}
               >
                 Cancel
@@ -173,7 +173,7 @@ function Profile() {
       ) : (
         <div>
           <div>information patient</div>
-          <table class="table">
+          <table className="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
