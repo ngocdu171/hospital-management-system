@@ -26,7 +26,7 @@ const HSMProvider = (props) => {
     axios
       .get(myURL + `/patient`)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         setPatients(response.data);
       })
       .catch((error) => {
@@ -55,10 +55,29 @@ const HSMProvider = (props) => {
     .then(response =>{
       getAllPatient();
     });
-    console.log("newInfo dc in tu context: ", newInfo);
+    // console.log("newInfo dc in tu context: ", newInfo);
     // console.log("idUser: ", userinfo[0]._id);
   }
-  console.log(userinfo);
+  // console.log(userinfo);
+
+  function bookAppointment(date,time,department,doctor) {
+    const filterUser = patients.find(patient => patient.username === userinfo[0].username)
+    // console.log("this is newBook in context: ", newBook , "filterUser: " ,filterUser);
+    // console.log(filterUser.fullname);
+    var newBook = [filterUser.fullname,filterUser.address,filterUser.phone,filterUser.city,
+      filterUser.blood,filterUser.gender,date,time,department,doctor];
+    console.log("fullname: ",typeof(filterUser.fullname), ", address: ",typeof(filterUser.address),
+    ", phone: ",typeof(filterUser.phone), ", city: ",typeof(filterUser.city),
+    ", blood: ",typeof(filterUser.blood),", gender: ",typeof(filterUser.gender),
+    ", date: ",typeof(date), ", time: ",typeof(time),
+    ", department: ",typeof(department),", doctor: ",typeof(doctor));
+    // console.log(newBook);
+    // axios.post(myURL+`/patient/book`,newBook)
+    // .then(response => {
+    //   console.log(response.data.message);
+    // });
+  }
+  console.log(patients);
 
   return (
     <HSMContext.Provider
@@ -69,7 +88,8 @@ const HSMProvider = (props) => {
         setUserinfo: setUserinfo,
         loginSuccess: loginSuccess,
         logout: logout,
-        updateInfo: updateInfo
+        updateInfo: updateInfo,
+        bookAppointment: bookAppointment
       }}
     >
       {props.children}

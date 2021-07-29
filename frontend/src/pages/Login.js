@@ -38,12 +38,12 @@ function Login() {
       <form onSubmit={Signin}>
         <legend>Login</legend>
 
-        <div class="form-group">
+        <div className="form-group">
           <div>
-            <label for="">Username</label>
+            <label>Username</label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               required="required"
               placeholder="Enter your Username"
               value={username}
@@ -51,10 +51,10 @@ function Login() {
             />
           </div>
           <div>
-            <label for="">Password</label>
+            <label>Password</label>
             <input
               type="password"
-              class="form-control"
+              className="form-control"
               required="required"
               placeholder="Enter your Password"
               value={password}
@@ -63,7 +63,7 @@ function Login() {
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Submit
         </button>
         <div>Have already an account?</div>

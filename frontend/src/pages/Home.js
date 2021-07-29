@@ -6,7 +6,7 @@ function Home() {
     <div>
       <section>
         <div className="container  !direction !spacing">
-          <div className="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+          <div className="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center}">
             <div className="col-2 ">b5-col 1</div>
             <div className="col-10 ">
               <img src="https://ichef.bbci.co.uk/news/640/cpsprodpb/931B/production/_111195673_corona_whatyouneedtodo_without_title-nc.png" />
@@ -66,6 +66,9 @@ function Home() {
           </div>
         </div>
       </section>
+      <div>
+      <Link to="/test">TEST</Link>
+      </div>
     </div>
   );
 }
