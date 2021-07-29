@@ -32,14 +32,14 @@ function Book() {
       var currentDate = today.getFullYear() + "-" + month + "-" + today.getDate();
       // const currentDate = Date().tolocaleString();
       if(department === null || doctor === null || currentDate > date) {
-        // if(date < date1) {
         alert("fill the fields !");
       }
       else {
         // const newBook = [date,time,department,doctor];
         // console.log(newBook + "   &   " + date1);
-        // console.log(date +"   &   " + date1);
+        // console.log(currentDate +"   &   " + date);
         // console.log(typeof(fullname));
+
         bookAppointment(date,time,department,doctor);
       }
       

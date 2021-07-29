@@ -64,20 +64,27 @@ const HSMProvider = (props) => {
     const filterUser = patients.find(patient => patient.username === userinfo[0].username)
     // console.log("this is newBook in context: ", newBook , "filterUser: " ,filterUser);
     // console.log(filterUser.fullname);
-    var newBook = [filterUser.fullname,filterUser.address,filterUser.phone,filterUser.city,
-      filterUser.blood,filterUser.gender,date,time,department,doctor];
-    console.log("fullname: ",typeof(filterUser.fullname), ", address: ",typeof(filterUser.address),
-    ", phone: ",typeof(filterUser.phone), ", city: ",typeof(filterUser.city),
-    ", blood: ",typeof(filterUser.blood),", gender: ",typeof(filterUser.gender),
-    ", date: ",typeof(date), ", time: ",typeof(time),
-    ", department: ",typeof(department),", doctor: ",typeof(doctor));
+    // var newBook = [filterUser.fullname,filterUser.address,filterUser.phone,
+    //   filterUser.city,filterUser.blood,filterUser.gender,date,time,department,doctor];
+    var fullname = filterUser.fullname;
+      var address = filterUser.address;
+        var phone = filterUser.phone;
+          var city = filterUser.city;
+            var blood = filterUser.blood;
+              var gender = filterUser.gender;
+    // console.log("fullname: ",typeof(filterUser.fullname), ", address: ",typeof(filterUser.address),
+    // ", phone: ",typeof(filterUser.phone), ", city: ",typeof(filterUser.city),
+    // ", blood: ",typeof(filterUser.blood),", gender: ",typeof(filterUser.gender),
+    // ", date: ",typeof(date), ", time: ",typeof(time),
+    // ", department: ",typeof(department),", doctor: ",typeof(doctor));
     // console.log(newBook);
-    // axios.post(myURL+`/patient/book`,newBook)
-    // .then(response => {
-    //   console.log(response.data.message);
-    // });
+    axios.post(myURL + `/patient/book`, {fullname,address,phone,city,blood,gender,
+      date,time,department,doctor})
+    .then(response => {
+      console.log(response.data.message);
+    });
   }
-  console.log(patients);
+  // console.log(patients);
 
   return (
     <HSMContext.Provider
