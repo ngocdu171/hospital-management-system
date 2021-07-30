@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const bookappointmentSchema = mongoose.Schema({
+    username: {
+        type: String,
+        required: true
+    },
     fullname: {
         type: String,
         required: true

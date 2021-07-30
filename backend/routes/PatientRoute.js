@@ -38,6 +38,7 @@ router.put("/:_id", async (req, res) => {
 router.post("/book", async(req,res) => {
   // res.json({message: "this is route patient book appointment!"});
   const newBook = new BookModel({
+    username: req.body.username,
     fullname: req.body.fullname,
     address: req.body.address,
     phone: req.body.phone,
@@ -55,7 +56,16 @@ router.post("/book", async(req,res) => {
   } catch (error) {
     res.status(409).json({message: error});
   }
-
 });
+
+router.get("/appointment", async(req,res)=>{
+  // res.send("this is appointment route");
+  try {
+    const appointments = await BookModel.find();
+    res.status(200).json(appointments);
+  } catch (error) {
+    res.status(404).json({ message: error });
+  }
+})
 
 export default router;

@@ -66,9 +66,6 @@ function Home() {
           </div>
         </div>
       </section>
-      <div>
-      <Link to="/test">TEST</Link>
-      </div>
     </div>
   );
 }

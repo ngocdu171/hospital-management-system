@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import EditProfile from "./components/EditProfile";
 import Book from "./pages/Book";
+import Appointment from "./pages/Appointment";
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path="/book">
             <Book />
+          </Route>
+          <Route path="/appointment">
+          <Appointment />
           </Route>
         </Switch>
         <Footer />
