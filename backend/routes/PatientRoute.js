@@ -66,6 +66,10 @@ router.get("/appointment", async(req,res)=>{
   } catch (error) {
     res.status(404).json({ message: error });
   }
+});
+
+router.delete("/:_id", (req, res)=>{
+  res.send("day la route delete")
 })
 
 export default router;

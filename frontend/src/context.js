@@ -94,10 +94,16 @@ const HSMProvider = (props) => {
     .then((response) => {
       // console.log("this is all appointment: ",response.data);
       setAppointments(response.data);
+      console.log(appointments);
     })
     .catch((error) => {
       console.log(error);
     })
+  }
+
+  function cancelAppointment(idcancel) {
+    const tempAppointment = appointments.filter(item => item._id !== idcancel);
+    console.log("da delete: ",tempAppointment);
   }
   // console.log(patients);
 
@@ -112,7 +118,8 @@ const HSMProvider = (props) => {
         logout: logout,
         updateInfo: updateInfo,
         bookAppointment: bookAppointment,
-        appointments: appointments
+        appointments: appointments,
+        cancelAppointment: cancelAppointment
       }}
     >
       {props.children}
