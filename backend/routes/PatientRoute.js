@@ -36,6 +36,14 @@ router.put("/:_id", async (req, res) => {
 });
 
 router.post("/book", async(req,res) => {
+  const dateFind = await BookModel.find({ date: req.body.date});
+  const timeFind = await BookModel.find({time: req.body.time});
+  const doctorFind = await BookModel.find({doctor: req.body.doctor});
+  const departmentFind = await BookModel.find({department: req.body.department})
+  if( dateFind.length > 0 && timeFind.length > 0 && doctorFind.length > 0 && departmentFind.length > 0 ) {
+    res.json({message : "Appointment is not available!"})
+  }
+  else {
   // res.json({message: "this is route patient book appointment!"});
   const newBook = new BookModel({
     username: req.body.username,
@@ -56,6 +64,7 @@ router.post("/book", async(req,res) => {
   } catch (error) {
     res.status(409).json({message: error});
   }
+}
 });
 
 router.get("/appointment", async(req,res)=>{
