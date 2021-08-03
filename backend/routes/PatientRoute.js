@@ -68,8 +68,14 @@ router.get("/appointment", async(req,res)=>{
   }
 });
 
-router.delete("/:_id", (req, res)=>{
-  res.send("day la route delete")
+router.delete("/:_id", async(req, res)=>{
+  await BookModel.remove({_id: req.params._id})
+  .then(results => {
+    res.json({ message: "Cancel successfully!"});
+  })
+  .catch(error => {
+    res.json(error);
+  })
 })
 
 export default router;

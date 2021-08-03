@@ -102,8 +102,16 @@ const HSMProvider = (props) => {
   }
 
   function cancelAppointment(idcancel) {
-    const tempAppointment = appointments.filter(item => item._id !== idcancel);
-    console.log("da delete: ",tempAppointment);
+    // const tempAppointment = appointments.filter(item => item._id !== idcancel);
+    // console.log("da delete: ",tempAppointment);
+    axios.delete(myURL + `/patient/` + idcancel)
+    .then((response) => {
+      getAppointment();
+      alert(response.data.message);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
   // console.log(patients);
 
