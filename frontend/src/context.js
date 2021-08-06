@@ -96,7 +96,6 @@ const HSMProvider = (props) => {
     .then((response) => {
       // console.log("this is all appointment: ",response.data);
       setAppointments(response.data);
-      console.log(appointments);
     })
     .catch((error) => {
       console.log(error);
