@@ -10,6 +10,8 @@ const HSMProvider = (props) => {
   const [userinfo, setUserinfo] = useState(null);
   const [islogin, setIslogin] = useState(false);
 
+  const [countries, setCountries] = useState();
+
   useEffect(() => {
     getAllPatient();
     getAppointment();
@@ -84,7 +86,7 @@ const HSMProvider = (props) => {
     axios.post(myURL + `/patient/book`, {username,fullname,address,phone,city,blood,gender,
       date,time,department,doctor})
     .then(response => {
-      console.log(response.data.message);
+      alert(response.data.message);
       getAppointment();
     });
   }
@@ -115,6 +117,11 @@ const HSMProvider = (props) => {
   }
   // console.log(patients);
 
+  ///////covid19
+  // function getCountries() {
+  //   axios.get(`https://api.covid19api.com/countries`);
+  // }
+
   return (
     <HSMContext.Provider
       value={{
@@ -127,7 +134,7 @@ const HSMProvider = (props) => {
         updateInfo: updateInfo,
         bookAppointment: bookAppointment,
         appointments: appointments,
-        cancelAppointment: cancelAppointment
+        cancelAppointment: cancelAppointment,
       }}
     >
       {props.children}
