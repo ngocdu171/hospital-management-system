@@ -9,28 +9,32 @@ const HSMProvider = (props) => {
   const [appointments, setAppointments] = useState();
   const [userinfo, setUserinfo] = useState(null);
   const [islogin, setIslogin] = useState(false);
-
-  const [countries, setCountries] = useState();
+  const [summary, setSummary] = useState([]);
 
   useEffect(() => {
     getAllPatient();
     getAppointment();
-    // axios
-    //   .get(myURL + `/patient`)
-    //   .then((response) => {
-    //     console.log(response);
-    //     setPatients(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   }, [islogin]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      getSummary();
+    }, 10000);
+  }, []);
+
+  /////covid19
+  function getSummary() {
+    axios.get(`https://api.covid19api.com/summary`).then((response) => {
+      setSummary(response.data);
+      console.log("context: ", summary);
+    });
+  }
+
+  ///////
   function getAllPatient() {
     axios
       .get(myURL + `/patient`)
       .then((response) => {
-        // console.log(response);
         setPatients(response.data);
       })
       .catch((error) => {
@@ -39,87 +43,76 @@ const HSMProvider = (props) => {
   }
 
   function loginSuccess(tam) {
-    // alert("login success!");
-    // console.log(user);
-    // console.log(tam[0].username);
     setUserinfo(tam);
-    // console.log(userinfo);
     setIslogin(true);
+    setTimeout(() => {
+      getSummary();
+    }, 10000);
   }
   function logout() {
-      setIslogin(false);
-      setUserinfo(null);
-    // console.log("hitted logout!");
+    setIslogin(false);
+    setUserinfo(null);
   }
-  
-  function updateInfo(_id,newInfo) {
-    // console.log("function updateInfo from context.js");
-    // const tam = newInfo;
-    axios.put(myURL+`/patient/`+_id, newInfo)
-    .then(response =>{
+
+  function updateInfo(_id, newInfo) {
+    axios.put(myURL + `/patient/` + _id, newInfo).then((response) => {
       getAllPatient();
     });
-    // console.log("newInfo dc in tu context: ", newInfo);
-    // console.log("idUser: ", userinfo[0]._id);
   }
-  // console.log(userinfo);
 
-  function bookAppointment(date,time,department,doctor) {
-    const filterUser = patients.find(patient => patient.username === userinfo[0].username)
-    // console.log("this is newBook in context: ", newBook , "filterUser: " ,filterUser);
-    // console.log(filterUser.fullname);
-    // var newBook = [filterUser.fullname,filterUser.address,filterUser.phone,
-    //   filterUser.city,filterUser.blood,filterUser.gender,date,time,department,doctor];
+  function bookAppointment(date, time, department, doctor) {
+    const filterUser = patients.find(
+      (patient) => patient.username === userinfo[0].username
+    );
     var username = userinfo[0].username;
     var fullname = filterUser.fullname;
-      var address = filterUser.address;
-        var phone = filterUser.phone;
-          var city = filterUser.city;
-            var blood = filterUser.blood;
-              var gender = filterUser.gender;
-    // console.log("fullname: ",typeof(filterUser.fullname), ", address: ",typeof(filterUser.address),
-    // ", phone: ",typeof(filterUser.phone), ", city: ",typeof(filterUser.city),
-    // ", blood: ",typeof(filterUser.blood),", gender: ",typeof(filterUser.gender),
-    // ", date: ",typeof(date), ", time: ",typeof(time),
-    // ", department: ",typeof(department),", doctor: ",typeof(doctor));
-    // console.log(newBook);
-    axios.post(myURL + `/patient/book`, {username,fullname,address,phone,city,blood,gender,
-      date,time,department,doctor})
-    .then(response => {
-      alert(response.data.message);
-      getAppointment();
-    });
+    var address = filterUser.address;
+    var phone = filterUser.phone;
+    var city = filterUser.city;
+    var blood = filterUser.blood;
+    var gender = filterUser.gender;
+    axios
+      .post(myURL + `/patient/book`, {
+        username,
+        fullname,
+        address,
+        phone,
+        city,
+        blood,
+        gender,
+        date,
+        time,
+        department,
+        doctor,
+      })
+      .then((response) => {
+        alert(response.data.message);
+        getAppointment();
+      });
   }
 
   function getAppointment() {
-    axios.get(myURL + `/patient/appointment`)
-    .then((response) => {
-      // console.log("this is all appointment: ",response.data);
-      setAppointments(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+    axios
+      .get(myURL + `/patient/appointment`)
+      .then((response) => {
+        setAppointments(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   function cancelAppointment(idcancel) {
-    // const tempAppointment = appointments.filter(item => item._id !== idcancel);
-    // console.log("da delete: ",tempAppointment);
-    axios.delete(myURL + `/patient/` + idcancel)
-    .then((response) => {
-      getAppointment();
-      alert(response.data.message);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+    axios
+      .delete(myURL + `/patient/` + idcancel)
+      .then((response) => {
+        getAppointment();
+        alert(response.data.message);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
-  // console.log(patients);
-
-  ///////covid19
-  // function getCountries() {
-  //   axios.get(`https://api.covid19api.com/countries`);
-  // }
 
   return (
     <HSMContext.Provider
@@ -134,6 +127,7 @@ const HSMProvider = (props) => {
         bookAppointment: bookAppointment,
         appointments: appointments,
         cancelAppointment: cancelAppointment,
+        summary,
       }}
     >
       {props.children}

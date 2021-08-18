@@ -1,7 +1,8 @@
 
 .hero{
-    height: 416px;
-    background-image: url(https://www.austin.org.au/Assets/Images/Surgery-mobile.jpg);
+    height: 300px;
+    width:auto;
+    background-image: url(https://somatopublications.com/admin/uploads/journals/Current%20Trends%20in%20Medicine%20Banner.jpg);
     margin-bottom: 10px;
 }
 

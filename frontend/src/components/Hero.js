@@ -4,7 +4,7 @@ function Hero() {
     return (
         <section className="hero">
         <div className="container-fluid">
-        <h1>XXX</h1>
+        <h1></h1>
         </div>
         </section>
     )
