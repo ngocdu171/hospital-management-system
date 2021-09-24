@@ -10,6 +10,7 @@ const HSMProvider = (props) => {
   const [userinfo, setUserinfo] = useState(null);
   const [islogin, setIslogin] = useState(false);
   const [summary, setSummary] = useState([]);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     getAllPatient();
@@ -20,13 +21,14 @@ const HSMProvider = (props) => {
     setTimeout(() => {
       getSummary();
     }, 10000);
-  }, []);
+  }, [loading]);
 
   /////covid19
   function getSummary() {
     axios.get(`https://api.covid19api.com/summary`).then((response) => {
       setSummary(response.data);
       console.log("context: ", summary);
+      setLoading(true);
     });
   }
 
@@ -127,7 +129,7 @@ const HSMProvider = (props) => {
         bookAppointment: bookAppointment,
         appointments: appointments,
         cancelAppointment: cancelAppointment,
-        summary,
+        summary, loading
       }}
     >
       {props.children}
