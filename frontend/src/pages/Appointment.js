@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { HSMContext } from "../context";
+import { Button } from "reactstrap";
 
 function Appointment() {
   const { appointments, userinfo, cancelAppointment } = useContext(HSMContext);
@@ -17,7 +18,6 @@ function Appointment() {
             <th>Department</th>
           </tr>
         </thead>
-        <tbody>
         {tam1.map((item)=> {
             return (
                 <tr key={item._id}>
@@ -28,7 +28,6 @@ function Appointment() {
             <button type="submit" className="btn btn-danger" onClick={()=>cancelAppointment(item._id)}>Cancel</button>
             </tr>
         )})}
-        </tbody>
       </table>
     </div>
   );

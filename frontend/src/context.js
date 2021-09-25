@@ -10,7 +10,9 @@ const HSMProvider = (props) => {
   const [userinfo, setUserinfo] = useState(null);
   const [islogin, setIslogin] = useState(false);
   const [summary, setSummary] = useState([]);
-  const [loading, setLoading] = useState(false)
+  const [countries, setCountries] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [report, setReport] = useState([]);
 
   useEffect(() => {
     getAllPatient();
@@ -23,13 +25,33 @@ const HSMProvider = (props) => {
     }, 10000);
   }, [loading]);
 
+  useEffect(() => {
+    getCountries();
+  }, [])
+
   /////covid19
   function getSummary() {
     axios.get(`https://api.covid19api.com/summary`).then((response) => {
       setSummary(response.data);
-      console.log("context: ", summary);
       setLoading(true);
     });
+  }
+
+  function getCountries() {
+    axios.get(`https://api.covid19api.com/countries`).then((response) => {
+      setCountries(response.data)
+    })
+  }
+
+  function getReportByCountry(ISO2) {
+    // console.log("ISO2:",ISO2);
+    const {Slug} = countries.find(country => country.ISO2 == ISO2);
+    // console.log(Slug);
+    //console.log(countries);
+    axios.get(`https://api.covid19api.com/dayone/country/`+ Slug)
+    .then((response) => {
+      setReport(response.data)
+    })
   }
 
   ///////
@@ -129,7 +151,9 @@ const HSMProvider = (props) => {
         bookAppointment: bookAppointment,
         appointments: appointments,
         cancelAppointment: cancelAppointment,
-        summary, loading
+        summary, loading, countries,
+        getReportByCountry: getReportByCountry,
+        report
       }}
     >
       {props.children}

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Summary from "../components/Summary";
+import InfoCovid from "../components/InfoCovid";
+
 
 function Home() {
     return (
@@ -25,8 +26,7 @@ function Home() {
             </div>
           </div>
         </section>
-
-        <Summary />
+        <InfoCovid />
 
         <section>
           <div className="container  !direction !spacing">

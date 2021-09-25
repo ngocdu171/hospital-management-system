@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 import EditProfile from "./components/EditProfile";
 import Book from "./pages/Book";
 import Appointment from "./pages/Appointment";
+import TrackCovid from "./pages/TrackCovid";
 
 function App() {
   
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route path="/appointment">
           <Appointment />
+          </Route>
+          <Route path="/trackcovid">
+          <TrackCovid />
           </Route>
         </Switch>
         <Footer />
