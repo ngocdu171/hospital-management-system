@@ -26,6 +26,7 @@ function Home() {
             </div>
           </div>
         </section>
+        
         <InfoCovid />
 
         <section>

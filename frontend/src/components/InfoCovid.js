@@ -58,7 +58,8 @@ function Summary() {
               </div>
             </div>
           </div>
-          <Link to="/trackcovid">Get more...</Link>
+          {loading && <Link to="/trackcovid">Get more...</Link>}
+          
         </div>
     );
   }

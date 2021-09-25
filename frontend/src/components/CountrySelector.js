@@ -3,7 +3,7 @@ import { HSMContext } from "../context";
 import { FormGroup, Label, Input, Container } from "reactstrap";
 
 function CountrySelector() {
-  const { countries, getReportByCountry, report } = useContext(HSMContext);
+  const { countries, getReportByCountry } = useContext(HSMContext);
 //   console.log(countries);
 // console.log(report);
   return (

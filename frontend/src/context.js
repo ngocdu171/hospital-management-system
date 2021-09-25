@@ -45,13 +45,31 @@ const HSMProvider = (props) => {
 
   function getReportByCountry(ISO2) {
     // console.log("ISO2:",ISO2);
-    const {Slug} = countries.find(country => country.ISO2 == ISO2);
+    const tam = "ID"
+    if(ISO2){
+    const {Slug} = countries.find(country => country.ISO2 === ISO2);
     // console.log(Slug);
     //console.log(countries);
-    axios.get(`https://api.covid19api.com/dayone/country/`+ Slug)
+    
+      axios.get(`https://api.covid19api.com/dayone/country/`+ Slug)
     .then((response) => {
-      setReport(response.data)
+      //xoa di item cuoi cung vi chua het ngay nen du lieu con sai sot
+      response.data.pop();
+      setReport(response.data);
     })
+    }
+    else {
+      const {Slug} = countries.find(country => country.ISO2 === tam);
+    // console.log(Slug);
+    //console.log(countries);
+    
+      axios.get(`https://api.covid19api.com/dayone/country/`+ Slug)
+    .then((response) => {
+      //xoa di item cuoi cung vi chua het ngay nen du lieu con sai sot
+      response.data.pop();
+      setReport(response.data);
+    })
+    }
   }
 
   ///////
