@@ -3,46 +3,42 @@ import { Redirect } from "react-router-dom";
 import { HSMContext } from "../context";
 
 function Book() {
-  const { userinfo, islogin, bookAppointment } =
-    useContext(HSMContext);
+  const { userinfo, islogin, bookAppointment } = useContext(HSMContext);
   // console.log(userinfo);
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
   const [department, setDepartment] = useState(null);
   const [doctor, setDoctor] = useState(null);
-  if(userinfo === null) {
-    alert("Login first!")
+  if (userinfo === null) {
+    alert("Login first!");
     return (
       // history.push("/login")
       <React.Fragment>
-      <Redirect to='/login' />
+        <Redirect to="/login" />
       </React.Fragment>
     );
-  }
-  else{
+  } else {
     function BookAppointment(event) {
       event.preventDefault();
       var today = new Date();
-      if(today.getMonth()<10){
-        var month = "0" + (today.getMonth() + 1)
+      if (today.getMonth() < 10) {
+        var month = "0" + (today.getMonth() + 1);
+      } else {
+        month = today.getMonth();
       }
-      else {
-        month = today.getMonth()
-      }
-      var currentDate = today.getFullYear() + "-" + month + "-" + today.getDate();
+      var currentDate =
+        today.getFullYear() + "-" + month + "-" + today.getDate();
       // const currentDate = Date().tolocaleString();
-      if(department === null || doctor === null || currentDate > date) {
+      if (department === null || doctor === null || currentDate > date) {
         alert("fill the fields !");
-      }
-      else {
+      } else {
         // const newBook = [date,time,department,doctor];
         // console.log(newBook + "   &   " + date1);
         // console.log(currentDate +"   &   " + date);
         // console.log(typeof(fullname));
 
-        bookAppointment(date,time,department,doctor);
+        bookAppointment(date, time, department, doctor);
       }
-      
     }
     return (
       <div className="container">
@@ -129,4 +125,4 @@ function Book() {
     );
   }
 }
-export default Book
+export default Book;

@@ -4,7 +4,6 @@ import { Link, useHistory } from "react-router-dom";
 import myURL from "../myURL.js";
 
 function Register() {
-
   let history = useHistory();
 
   const [fullname, setFullname] = useState();
@@ -24,20 +23,31 @@ function Register() {
     if (password !== repassword) {
       alert("they do not matched!");
     } else {
-      axios.get(myURL+'/user').then((res) => {
+      axios.get(myURL + "/user").then((res) => {
         var userCheck = res.data.find((e) => e.username === username);
         if (userCheck) {
           alert("Username existed!");
         } else {
-          axios.post(myURL+'/user', {username,password,fullname,address,phone,city,blood,gender,dob}).then((res) => {
-            if(res) {
-              alert("create successful!");
-              history.push('/login');
-            }
-            else {
-              alert("create fail!");
-            }
-          })
+          axios
+            .post(myURL + "/user", {
+              username,
+              password,
+              fullname,
+              address,
+              phone,
+              city,
+              blood,
+              gender,
+              dob,
+            })
+            .then((res) => {
+              if (res) {
+                alert("create successful!");
+                history.push("/login");
+              } else {
+                alert("create fail!");
+              }
+            });
         }
       });
     }
@@ -148,7 +158,7 @@ function Register() {
               value={gender}
               onChange={(event) => setGender(event.target.value)}
             >
-              <option >Select your gender</option>
+              <option>Select your gender</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </select>

@@ -37,10 +37,10 @@ function Profile() {
       gender !== tam.gender ||
       dob !== tam.dob
     ) {
-      const _id = tam._id
+      const _id = tam._id;
       const newInfo = { fullname, address, phone, city, blood, gender, dob };
       // console.log(newInfo);
-      updateInfo(_id,newInfo);
+      updateInfo(_id, newInfo);
     }
     alert("Change Profile Successful!");
     event.preventDefault();
@@ -57,8 +57,7 @@ function Profile() {
     <div className="container !direction !spacing">
       {showedit ? (
         <div>
-          <div>
-          </div>
+          <div></div>
           <div className="container">
             <form onSubmit={EditInfo}>
               <legend>Edit information</legend>

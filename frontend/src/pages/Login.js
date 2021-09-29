@@ -19,7 +19,7 @@ function Login() {
       .then((res) => {
         if (res.data.user) {
           // console.log(res.data.user);
-          history.push('/');
+          history.push("/");
           const tam = res.data.user;
           loginSuccess(tam);
           // setUserinfo(res.data.user[0].username);
