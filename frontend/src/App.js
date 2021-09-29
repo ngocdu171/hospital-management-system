@@ -15,7 +15,6 @@ import Appointment from "./pages/Appointment";
 import TrackCovid from "./pages/TrackCovid";
 
 function App() {
-  
   return (
     <HSMProvider>
       <BrowserRouter>
@@ -41,10 +40,10 @@ function App() {
             <Book />
           </Route>
           <Route path="/appointment">
-          <Appointment />
+            <Appointment />
           </Route>
           <Route path="/trackcovid">
-          <TrackCovid />
+            <TrackCovid />
           </Route>
         </Switch>
         <Footer />
