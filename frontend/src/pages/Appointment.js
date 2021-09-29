@@ -25,7 +25,7 @@ function Appointment() {
             <td>{item.date}</td>
             <td>{item.time}</td>
             <td>{item.department}</td>
-            <button type="submit" className="btn btn-danger" onClick={()=>cancelAppointment(item._id)}>Cancel</button>
+            <Button color="danger" onClick={()=>cancelAppointment(item._id)}>Cancel</Button>
             </tr>
         )})}
       </table>

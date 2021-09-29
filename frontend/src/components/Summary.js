@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import HighchartReact from 'highcharts-react-official'
 import Highchart from 'highcharts'
+import { HSMContext } from '../context';
+import moment from 'moment';
+import { Button, ButtonGroup, ButtonToggle } from 'reactstrap';
 
-const generationOptions = (data) => {
-    const categories = [];
+const generationOptions = (report) => {
+    const categories = report.map((item)=>moment(item.Date).format('DD/MM/YYYY'));
     return {
         chart: {
             height: 500 //xet chieu cao linechart
         },
         title: {
-            text: 'Total cases'
+            text: 'Total Cases'
         },
         xAxis: {
             categories: categories,
@@ -39,20 +42,42 @@ const generationOptions = (data) => {
         },
         series: [
             {
-                name: 'Total cases',
-                data: data.map((item) => item.Confirmed)
+                name: 'Total Cases',
+                data: report.map((item) => item.Confirmed)
             }
         ]
     }
 }
 
-function Summary({data}) {
+function Summary() {
+    const { report } = useContext(HSMContext)
     const [options, setOptions] = useState({})
+    const [reportType, setReportType] = useState('all');
     useEffect(() => {
-        setOptions(generationOptions(data));
-    }, [data])
+        let customData = [];
+        switch (reportType) {
+            case 'all':
+                customData = report
+                break;
+            case '30':
+                customData = report.slice(report.length - 30); //data.length = 50 ==> lay tu phan tu thu 21 tro ve cuoi
+                break;
+            case '7':
+            customData = report.slice(report.length - 7); //data.length = 50 ==> lay tu phan tu thu 44 tro ve cuoi
+            break;
+            default:
+                customData = report
+                break;
+        }
+        setOptions(generationOptions(customData));
+    }, [report, reportType])
     return (
         <div>
+        <ButtonGroup>
+        <Button outline color={reportType=== "all" ? "primary" : "secondary"} onClick={() => setReportType('all')}>All</Button>
+        <Button outline color={reportType=== "30" ? "primary" : "secondary"} onClick={() => setReportType('30')}>30 days</Button>
+        <Button outline color={reportType=== "7" ? "primary" : "secondary"} onClick={() => setReportType('7')}>7 days</Button>
+        </ButtonGroup>
             <HighchartReact 
             highcharts={Highchart}
             options={options}

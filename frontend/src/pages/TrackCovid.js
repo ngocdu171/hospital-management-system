@@ -8,6 +8,7 @@ function TrackCovid() {
         <div>
             <CountrySelector />
             <Highlight />
+            <Summary />
         </div>
     )
 }
