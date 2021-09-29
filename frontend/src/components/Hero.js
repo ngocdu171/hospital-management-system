@@ -1,13 +1,16 @@
-import React from 'react'
+import React from "react";
+import { Container } from "reactstrap";
 
 function Hero() {
-    return (
-        <section className="hero">
+  return (
+    <Container fluid={true}>
+      <section className="hero">
         <div className="container-fluid">
-        <h1></h1>
+          <h1></h1>
         </div>
-        </section>
-    )
+      </section>
+    </Container>
+  );
 }
 
-export default Hero
+export default Hero;

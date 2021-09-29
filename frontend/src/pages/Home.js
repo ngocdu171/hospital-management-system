@@ -1,10 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Container, Row } from "reactstrap";
 import InfoCovid from "../components/InfoCovid";
+import Slider from "../components/Slider";
 
 function Home() {
   return (
-    <div>
+    <Container>
+    <Row>
+    <Slider />
+    </Row>
+    
       <section>
         <div className="container  !direction !spacing">
           <div className="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center}">
@@ -54,7 +60,7 @@ function Home() {
           </div>
         </div>
       </section>
-    </div>
+      </Container>
   );
 }
 export default Home;
