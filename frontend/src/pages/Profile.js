@@ -55,15 +55,9 @@ function Profile() {
 
   return (
     <div className="container !direction !spacing">
-      <div className="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
-        This is Profile page
-      </div>
       {showedit ? (
         <div>
           <div>
-            <div>
-              <label>asda</label>
-            </div>
           </div>
           <div className="container">
             <form onSubmit={EditInfo}>
@@ -174,12 +168,6 @@ function Profile() {
         <div>
           <div>information patient</div>
           <table className="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
             <tbody>
               <tr>
                 <th scope="row">Username</th>
